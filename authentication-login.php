@@ -107,8 +107,8 @@ if (isset($_COOKIE['email_address']) && isset($_COOKIE['password'])) {
   <div class="glass-card col-md-5 col-lg-4">
     <div class="text-center mb-4">
       <i class="fas fa-user-clock fa-3x text-primary mb-3"></i>
-      <h2 class="fw-bold">E-Leave</h2>
-      <p class="text-dark mb-1">Employee Leave Management System</p>
+      <h2 class="fw-bold">E-Parking</h2>
+      <p class="text-dark mb-1">Parking Management System</p>
     </div>
 
     <form method="POST" action="proses/proses_login.php">
