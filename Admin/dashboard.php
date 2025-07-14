@@ -236,6 +236,49 @@ $todayOut = countQuery($koneksi, "SELECT COUNT(*) AS total FROM tbl_history WHER
         </div>
       </div>
 
+      <!-- HISTORY TABLE -->
+      <div class="row mt-1">
+        <div class="col-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="mb-4 fw-bold">Riwayat Parkir</h5>
+              <div class="table-responsive">
+                <table id="historyTable" class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Plat Nomor</th>
+                      <th>Jenis Kendaraan</th>
+                      <th>Lokasi Parkir</th>
+                      <th>Waktu Masuk</th>
+                      <th>Waktu Keluar</th>
+                      <th>Total Pembayaran</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $result = mysqli_query($koneksi, "SELECT * FROM tbl_history ORDER BY time_out DESC");
+                    $no = 1;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo '<tr>
+                  <td>' . $no++ . '</td>
+                  <td>' . htmlspecialchars($row['plat_nomor']) . '</td>
+                  <td>' . htmlspecialchars($row['jenis_kendaraan']) . '</td>
+                  <td>' . htmlspecialchars($row['lokasi_parkir']) . '</td>
+                  <td>' . $row['time_in'] . '</td>
+                  <td>' . $row['time_out'] . '</td>
+                  <td>Rp. ' . number_format($row['total_pembayaran'], 2, ',', '.') . '</td>
+                </tr>';
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     </div>
   </div>
@@ -381,4 +424,26 @@ $todayOut = countQuery($koneksi, "SELECT COUNT(*) AS total FROM tbl_history WHER
 
     canvas.style.cursor = hovering ? 'pointer' : 'default';
   });
+
+  $(document).ready(function () {
+    $('#historyTable').DataTable({
+      responsive: true,
+      pageLength: 10,
+      lengthChange: false,
+      language: {
+        search: "Cari:",
+        zeroRecords: "Tidak ada data ditemukan",
+        paginate: {
+          first: "Awal",
+          last: "Akhir",
+          next: "›",
+          previous: "‹"
+        },
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        infoEmpty: "Tidak ada data tersedia",
+      }
+    });
+  });
+
+
 </script>
