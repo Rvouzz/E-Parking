@@ -135,7 +135,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top py-3 px-4">
     <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center" href="authentication-login.php">
         <i class="fas fa-car me-2"></i> E-Parking
       </a>
     </div>

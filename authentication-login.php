@@ -106,7 +106,7 @@ if (isset($_COOKIE['email_address']) && isset($_COOKIE['password'])) {
 
   <div class="glass-card col-md-5 col-lg-4">
     <div class="text-center mb-4">
-      <i class="fas fa-user-clock fa-3x text-primary mb-3"></i>
+      <i class="fas fa-car fa-3x text-primary mb-3"></i>
       <h2 class="fw-bold">E-Parking</h2>
       <p class="text-dark mb-1">Parking Management System</p>
     </div>
@@ -126,7 +126,7 @@ if (isset($_COOKIE['email_address']) && isset($_COOKIE['password'])) {
           <input class="form-check-input" type="checkbox" name="flexCheckChecked" id="flexCheckChecked">
           <label class="form-check-label" for="flexCheckChecked">Remember Me</label>
         </div>
-        <a href="forgot_password.php" class="text-primary text-decoration-none">Forgot Password?</a>
+        <!-- <a href="forgot_password.php" class="text-primary text-decoration-none">Forgot Password?</a> -->
       </div>
       <button type="submit" class="btn btn-primary w-100">
         <i class="fas fa-sign-in-alt me-2"></i> Sign In
