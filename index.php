@@ -211,6 +211,7 @@
 <script>
   $('#platForm').submit(function (e) {
     e.preventDefault();
+
     const plat_nomor = $('#plat_nomor').val();
     const jenis_kendaraan = $('#jenis_kendaraan').val();
 
@@ -231,6 +232,7 @@
           }).then(() => {
             window.location.href = 'User/Dashboard.php';
           });
+
         } else if (res === 'inserted') {
           Swal.fire({
             icon: 'success',
@@ -240,11 +242,29 @@
           }).then(() => {
             window.location.href = 'User/Dashboard.php';
           });
+
+        } else if (res === 'full') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Parkir Penuh',
+            text: 'Semua slot parkir untuk jenis kendaraan ini sedang penuh.',
+            confirmButtonColor: '#d33'
+          });
+
+        } else if (res === 'invalid_vehicle') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Jenis Kendaraan Tidak Dikenali',
+            text: 'Silakan pilih jenis kendaraan yang valid.',
+            confirmButtonColor: '#d33'
+          });
+
         } else {
           Swal.fire({
             icon: 'error',
             title: 'Gagal',
             text: 'Terjadi kesalahan pada server!',
+            confirmButtonColor: '#d33'
           });
         }
       },
@@ -253,10 +273,12 @@
           icon: 'error',
           title: 'Gagal Terhubung',
           text: 'Tidak dapat menghubungi server.',
+          confirmButtonColor: '#d33'
         });
       }
     });
   });
+
 </script>
 
 

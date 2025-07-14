@@ -34,6 +34,14 @@ $leastActive = mysqli_fetch_assoc(mysqli_query($koneksi, "
   ORDER BY total ASC LIMIT 1
 "));
 
+$most_slot = mysqli_fetch_assoc(mysqli_query($koneksi, "
+  SELECT lokasi_parkir, COUNT(*) AS total 
+  FROM tbl_history 
+  GROUP BY lokasi_parkir 
+  ORDER BY total DESC 
+  LIMIT 1
+"));
+
 $today = date('Y-m-d');
 $earningToday = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT SUM(total_pembayaran) AS total FROM tbl_history WHERE DATE(time_out) = '$today'"))['total'] ?? 0;
 
@@ -122,6 +130,20 @@ $todayOut = countQuery($koneksi, "SELECT COUNT(*) AS total FROM tbl_history WHER
               <h5 class="mb-0 fw-bold">Parking Map</h5>
             </div>
             <div class="card-body p-3">
+
+              <!-- Legend -->
+              <div class="mb-3 d-flex justify-content-center gap-4">
+                <div class="d-flex align-items-center">
+                  <div class="rounded-circle bg-success me-2" style="width: 15px; height: 15px;"></div>
+                  <small>Empty</small>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="rounded-circle bg-danger me-2" style="width: 15px; height: 15px;"></div>
+                  <small>Occupied</small>
+                </div>
+              </div>
+
+              <!-- Canvas -->
               <div class="d-flex justify-content-center">
                 <canvas id="imageCanvas" width="729" height="404" style="max-width: 100%; height: auto;"></canvas>
                 <map name="image-map" id="image-map"></map>
@@ -129,6 +151,7 @@ $todayOut = countQuery($koneksi, "SELECT COUNT(*) AS total FROM tbl_history WHER
             </div>
           </div>
         </div>
+
 
 
         <!-- RIGHT: Summary as Table -->
@@ -158,6 +181,10 @@ $todayOut = countQuery($koneksi, "SELECT COUNT(*) AS total FROM tbl_history WHER
                     <tr>
                       <th class="text-muted">Exited Today</th>
                       <td class="text-secondary fw-bold"><?= number_format($todayOut) ?> vehicles</td>
+                    </tr>
+                    <tr>
+                      <th class="text-muted">Most Used Slot</th>
+                      <td class="text-danger fw-bold"><?= $most_slot['lokasi_parkir'] ?? '-' ?></td>
                     </tr>
                   </tbody>
                 </table>

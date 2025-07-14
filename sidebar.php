@@ -40,11 +40,11 @@ $get_role = isset($_SESSION['role']) ? $_SESSION['role'] : '';
         <i class="fas fa-user-clock text-white me-2 fs-5"></i> <!-- Icon representing E-Leave -->
         <span class="text-white fw-bold">E-Leave</span> <!-- App name -->
       </a>
-      <div class="nav-toggle">
+      <!-- <div class="nav-toggle">
         <button class="btn btn-toggle toggle-sidebar"><i class="gg-menu-right"></i></button>
         <button class="btn btn-toggle sidenav-toggler"><i class="gg-menu-left"></i></button>
       </div>
-      <button class="topbar-toggler more"><i class="gg-more-vertical-alt"></i></button>
+      <button class="topbar-toggler more"><i class="gg-more-vertical-alt"></i></button> -->
     </div>
 
     <!-- End Logo Header -->
@@ -62,7 +62,22 @@ $get_role = isset($_SESSION['role']) ? $_SESSION['role'] : '';
             </a>
           </li>
         <?php endif; ?>
+        <?php if (isset($_SESSION['plat_nomor'])): ?>
+          <!-- Dashboard -->
+          <li class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">
+            <a href="dashboard.php">
+              <i class="fas fa-home"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
 
+          <li class="nav-item">
+            <a href="./proses/logout.php">
+              <i class="fas fa-arrow-left"></i>
+              <p>Back & Logout</p>
+            </a>
+          </li>
+        <?php endif; ?>
       </ul>
     </div>
   </div>
